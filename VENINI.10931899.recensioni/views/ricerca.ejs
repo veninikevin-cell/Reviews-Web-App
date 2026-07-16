@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Ricerca recensioni per argomento</title>
+    <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div>
+    <form method="GET" action="/ricerca">
+    <input type="text" name="search" placeholder="Cerca per tipo o prodotto..." value="<%= search %>">
+    <button type="submit">Cerca</button>
+</form>
+    <% if(search) { %>
+        <h2>Risultati per "<%= search %>"</h2>
+        <% if(review.length === 0) { %>
+            <p>Nessuna recensione trovata.</p>
+        <% }else {%>
+        <% review.forEach(review => { %>
+    <a href="/recensione/<%= review.id %>" style="text-decoration:none;color:inherit;">
+        <div class="card">
+        <h2><%= review.product_name %></h2>
+        <p>📂 <%=review.tipo %></p>
+        <p>👤 <%= review.user_username %></p>
+        <p>⭐ <%= review.rating %>/10</p>
+        <p><%= review.comment %></p>
+    </div>
+    </div>
+    <% }) %>
+    <% } %>
+    <% } %>
+
+
+
+    </body>
+</html>

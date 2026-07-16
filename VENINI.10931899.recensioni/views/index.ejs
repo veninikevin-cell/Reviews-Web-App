@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recensioni</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div style="background:#4a90e2; padding:15px 20px; display:flex; align-items:center; gap:20px;">
+    <span style="color:white; font-size:1.2rem; font-weight:bold; margin-right:auto;">📝 Recensioni</span>
+    <% if(sessionUser) { %>
+        <span style="color:white;">Ciao, <strong><%= sessionUser %></strong></span>
+        <a href="/nuovaRecensione" style="color:white;">+ Nuova</a>
+        <a href="/ricerca" style="color:white;">🔍 Ricerca</a>
+        <a href="/logout" style="color:white;">Logout</a>
+        <div style="background:#357abd; padding:8px 20px;">
+        <a href="/visualizzaLeTueRecensioni" style="color:white;">Le mie recensioni</a>
+</div>
+    <% } else { %>
+        <a href="/ricerca" style="color:white;">🔍 Ricerca</a>
+        <a href="/login" style="color:white;">Login</a>
+    <% } %>
+</div>
+
+
+<div style="max-width:800px; margin:20px auto; padding:0 20px;">
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:25px;">
+        <a href="/catalogo/libri" class="card" style="padding:10px 20px;">📚 Libri</a>
+        <a href="/catalogo/film" class="card" style="padding:10px 20px;">🎬 Film</a>
+        <a href="/catalogo/ristorazione" class="card" style="padding:10px 20px;">🍽️ Ristoranti</a>
+        <a href="/catalogo/Videogames" class="card" style="padding:10px 20px;">🎮 Videogiochi</a>
+        <a href="/catalogo/corsi" class="card" style="padding:10px 20px;">🎓 Corsi</a>
+    </div>
+
+    <h2 style="margin-bottom:15px;">Ultime recensioni</h2>
+
+    <% review.forEach(review => { %>
+        <a href="/recensione/<%= review.id %>" style="text-decoration:none;color:inherit;">
+            <div class="card">
+                <h2><%= review.product_name %></h2>
+                <p>📂 <%= review.tipo %></p>
+                <p>👤 <%= review.user_username %></p>
+                <p>⭐ <%= review.rating %>/10</p>
+                <p><%= review.comment %></p>
+            </div>
+        </a>
+        <% if(sessionRuolo === 'admin') { %>
+            <a href="/modificaRecensioni/<%= review.id %>">✏️ Modifica</a>
+            <a href="/elimina/<%= review.id %>" onclick="return confirm('Eliminare?')">🗑️ Elimina</a>
+        <% } %>
+    <% }) %>
+
+</div>
+
+</body>
+</html>

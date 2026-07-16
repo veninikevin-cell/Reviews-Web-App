@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><title>Modifica recensione</title>
+<link rel="stylesheet" href="/style.css"></head>
+<body>
+    <% if(sessionRuolo ==='admin') { %>
+    <a href= "/" >← Torna indietro</a>
+    <% }else{ %>
+    <a href="/visualizzaLeTueRecensioni">← Torna indietro</a>
+    <% } %>    
+    <h1>Modifica recensione</h1>
+
+    <% if(error) { %><p style="color:red"><%= error %></p><% } %>
+
+    <form method="POST" action="/modificaRecensioni/<%= review.id %>">
+        <div>
+            <label>Titolo</label>
+            <input type="text" name="titolo" value="<%= review.product_name %>" required>
+        </div>
+        <div>
+            <label>Tipo</label>
+            <input type="text" name="tipo" value="<%= review.tipo %>" required>
+        </div>
+        <div>
+            <label>Valutazione (1-10)</label>
+            <input type="number" name="valutazione" value="<%= review.rating %>" min="1" max="10" required>
+        </div>
+        <div>
+            <label>Descrizione</label>
+            <textarea name="descrizione" required><%= review.comment %></textarea>
+        </div>
+        <button type="submit">Salva modifiche</button>
+    </form>
+</body>
+</html>

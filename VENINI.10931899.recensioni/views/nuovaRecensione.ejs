@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuova Recensione</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="card">
+    <h1>Aggiungi una nuova recensione</h1>
+
+    <% if(error) { %><div class="error"><%= error %></div><% } %>
+
+    <form action="/nuovaRecensione" method="POST">
+        <div>
+            <label>Argomento *</label>
+            <input type="text" name="tipo" placeholder="Es: film, libro..." required>
+        </div>
+        <div>
+            <label>Cosa vuoi recensire *</label>
+            <input type="text" name="titolo" placeholder="Titolo" required>
+        </div>
+        <div>
+            <label>Descrizione *</label>
+            <input type="text" name="descrizione" placeholder="Descrivi..." required>
+        </div>
+        <div>
+            <label>Valutazione * (1-10)</label>
+            <input type="number" name="valutazione" min="1" max="10" required>
+        </div>
+        <button type="submit" style="width:100%; margin-top:10px;">Pubblica</button>
+    </form>
+
+    <p style="text-align:center; margin-top:1rem;">
+        <a href="/">Torna alla home</a>
+    </p>
+</div>
+
+</body>
+</html>

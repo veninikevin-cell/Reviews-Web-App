@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <a href="/">Torna alla home</a>
+        <title>LE MIE RECENSIONI</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+            <div>
+        
+        <h1>ECCO LE TUE RECENSIONI</h1>
+        <% MieReview.forEach(MieReview => { %>
+    <a href="/recensione/<%= MieReview.id %>" style="text-decoration:none;color:inherit;"></a>
+        <div class="card" style="margin-bottom:1.5rem;">
+        <h2><%= MieReview.product_name %></h2>
+        <p>📂 <%= MieReview.tipo %></p>
+        <p>⭐ <%= MieReview.rating %>/10</p>
+        <p><%= MieReview.comment %></p>
+        <a href="/modificaRecensioni/<%= MieReview.id %>">✏️ Modifica</a>
+        <a href="/elimina/<%= MieReview.id %>" 
+           onclick="return confirm('Sei sicuro di voler eliminare?')">🗑️ Elimina</a>
+    </div>
+    <% }) %>
+    </body>
+</html>

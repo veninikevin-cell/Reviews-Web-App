@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= tipo %></title>
+<link rel="stylesheet" href="/style.css"></head>
+<body>
+    <a href="/">← Torna indietro</a>
+    <h1><%= tipo.toUpperCase() %></h1>
+
+    <% if(reviews.length === 0) { %>
+        <p>Nessuna recensione per questa categoria.</p>
+    <% } else { %>
+        <% reviews.forEach(review => { %>
+            <a href="/oggetto/<%= encodeURIComponent(review.product_name) %>" style="text-decoration:none;color:inherit;">
+                <div class="card">
+                    <h2><%= review.product_name %></h2>
+                    <p>⭐ <%= parseFloat(review.media).toFixed(1) %>/10</p>
+                    <p><%= review.totale %> recensioni</p>
+                </div>
+            </a>
+        <% }) %>
+    <% } %>
+</body>
+</html>
