@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= product_name %></title>
+<link rel="stylesheet" href="/style.css"></head>
+<body>
+    <a href="/">← Torna alla homepage</a>
+
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h1><%= product_name %></h1>
+        <span style="font-size:1.5rem;">⭐ <%= media %>/10</span>
+    </div>
+    </div>
+
+    <h2>Tutte le recensioni</h2>
+    <% reviews.forEach(review => { %>
+        <a href="/recensione/<%= review.id %>" style="text-decoration:none;color:inherit;">
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>👤 <%= review.user_username %></h2>
+                <p>⭐ <%= review.rating %>/10</p>
+                </div>
+                <p><%= review.comment %></p>
+            </div>
+        </a>
+    <% }) %>
+</body>
+</html>
